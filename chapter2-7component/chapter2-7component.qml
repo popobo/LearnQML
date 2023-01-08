@@ -6,10 +6,15 @@ Window {
     visible: true
     title: qsTr("component")
 
-    Button {}
+    Button {
+        text:"开始"
+        onClicked: {
+            text1.text = "aaaaaa"
+        }
+    }
 
     Text { // text changes when button was clicked
-        id: status
+        id: text1
         x: 12;
         y: 76
         width: 116;
@@ -17,5 +22,4 @@ Window {
         text: "waiting ..."
         horizontalAlignment: Text.AlignHCenter
     }
-
 }
