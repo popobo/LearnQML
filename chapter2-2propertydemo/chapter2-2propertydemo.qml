@@ -28,7 +28,7 @@ Rectangle {
         property alias anotherTimes: thisLabel.times
 
         // (6) set text appended by value
-        text: "thisLable " + anotherTimes
+        text: "thisLabel " + anotherTimes
 
         // (7) font is a grouped property
         font.family: "Ubuntu"
@@ -49,10 +49,24 @@ Rectangle {
 
     Text {
         id: thatLabel
-        text: "thatLable"
+        //持续性关联
+        text: "thatLable" + thisLabel.times
         focus: !thisLabel.focus
         KeyNavigation.tab: thisLabel
         color: focus ? "red" : "black"
+
+        // (1) handler for text changes. Need to use function to capture parameters
+        onTextChanged: (text)=>/*function(text)*/ { console.log("text changed to:", text) }
+
+        Keys.onSpacePressed: {increment()}
+        //=破除绑定
+        Keys.onEscapePressed: {text = ""}
+
+
+        //JS函数
+        function increment() {
+            thisLabel.times += 1
+        }
     }
 }
 
